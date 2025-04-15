@@ -1,0 +1,64 @@
+# base stage:
+# Install dependencies for deployment to get minimum size for deployer.
+# For deployment environment, only occlum-runtime and sgx-psw are needed.
+FROM ubuntu:20.04 as base
+LABEL maintainer="Chunyang Hui <sanqian.hcy@antgroup.com>"
+
+ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
+RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends gnupg wget ca-certificates jq && \
+    echo 'deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu focal main' | tee /etc/apt/sources.list.d/intel-sgx.list && \
+    wget -qO - https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key | apt-key add - && \
+    echo 'deb [arch=amd64] https://occlum.io/occlum-package-repos/debian focal main' | tee /etc/apt/sources.list.d/occlum.list && \
+    wget -qO - https://occlum.io/occlum-package-repos/debian/public.key | apt-key add - && \
+    apt-get update && \
+    apt-get install -y occlum-toolchains-gcc=0.27.0-1 occlum=0.30.1-1 occlum-sgx-tools=0.30.1-1 occlum-pal=0.30.1-1 occlum-runtime=0.30.1-1 libsgx-uae-service libsgx-dcap-ql libsgx-urts libsgx-dcap-default-qpl && \
+    apt-get install curl binutils m4 make -y
+ENV PATH="/opt/occlum/build/bin:/usr/local/occlum/bin:$PATH"
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+    
+# packager stage:
+# Users can build their own applications and put to occlum instance.
+# And then use "occlum package" to get a minimum subset of files to run in deployment environment.
+# In this demo, the occlum instance is built in debug mode.
+# So "--debug" flag is required for the "occlum package".
+FROM occlum/occlum:0.30.1-ubuntu20.04 as packager
+WORKDIR /RUST
+RUN apt-get update || true  && DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends gnupg wget ca-certificates jq && \
+    echo 'deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu focal main' | tee /etc/apt/sources.list.d/intel-sgx.list && \
+    wget -qO - https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key | apt-key add - && \
+    echo 'deb [arch=amd64] https://occlum.io/occlum-package-repos/debian focal main' | tee /etc/apt/sources.list.d/occlum.list && \
+    wget -qO - https://occlum.io/occlum-package-repos/debian/public.key | apt-key add -
+RUN apt update && apt install -y clang
+RUN rustup install nightly-2024-11-11-x86_64-unknown-linux-gnu && \
+    rustup default nightly-2024-11-11-x86_64-unknown-linux-gnu && \
+    rustup target add x86_64-unknown-linux-musl
+COPY ./src ./src
+COPY ./Cargo.lock ./Cargo.lock
+COPY ./Cargo.toml ./Cargo.toml
+COPY ./sgx-bool-registration-tool ./sgx-bool-registration-tool
+COPY ./occlum/occlum ./occlum
+WORKDIR /RUST/occlum
+RUN chmod +x ./openssl_musl.sh && \
+    ./openssl_musl.sh
+WORKDIR /RUST
+RUN occlum-cargo build --release
+WORKDIR /RUST/occlum
+COPY ./occlum/occlum_build.sh ./occlum_build.sh
+RUN chmod +x ./occlum_build.sh && \
+    ./occlum_build.sh
+RUN cd occlum_instance &&\
+    occlum package
+
+# deployer stage:
+# Unpack the package from packager
+FROM base as deployer
+WORKDIR /root
+COPY --from=packager /RUST/occlum/occlum_instance/occlum_instance.tar.gz .
+RUN tar -xvzf occlum_instance.tar.gz
+RUN rm occlum_instance.tar.gz
+COPY --from=packager /etc/sgx_default_qcnl.conf /etc
+RUN    mkdir -p /var/run/aesmd && \
+    echo "LD_LIBRARY_PATH=/opt/intel/sgx-aesm-service/aesm nohup /opt/intel/sgx-aesm-service/aesm/aesm_service --no-daemon >/dev/null 2>&1 &" > /root/.bashrc
+
+WORKDIR /root
