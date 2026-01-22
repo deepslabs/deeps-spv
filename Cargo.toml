@@ -1,5 +1,5 @@
 [package]
-name = "dsn-spv"
+name = "sxn-spv"
 version = "0.1.0"
 edition = "2021"
 
@@ -34,15 +34,15 @@ solana-client = "=2.1.7"
 solana-sdk = "=2.1.7"
 solana-transaction-status-client-types = "=2.1.7"
 
-dsn-rsv = { git = "https://github.com/DeepSecurityNetwork/dsn-rsv", branch = "main" }
+sxn-rsv = { git = "https://github.com/safexn/sxn-rsv", branch = "main" }
 
 # btc
-nakamoto = { git = "https://github.com/DeepSecurityNetwork/nakamoto", branch = "deep" }
+nakamoto = { git = "https://github.com/safexn/nakamoto", branch = "deep" }
 #nakamoto = { path = "../nakamoto" }
 bitcoinnakamoto = { version = "0.29.2", package  = "bitcoin", features = ["serde"] }
 
 #eth
-helios = { git = "https://github.com/DeepSecurityNetwork/helios", branch = "deep" } #, rev = "5d159575ceb0b46ca0c4ff6dab79799d3a5a7469" }
+helios = { git = "https://github.com/safexn/helios", branch = "deep" } #, rev = "5d159575ceb0b46ca0c4ff6dab79799d3a5a7469" }
 alloy = { version = "0.9", features = ["rpc", "rpc-types"] }
 indexmap = "2.7.1"
 

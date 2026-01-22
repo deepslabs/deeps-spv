@@ -14,7 +14,7 @@ use crate::{
 };
 use nakamoto::client::traits::Handle;
 use serde::Serialize;
-use dsn_rsv::{create_sgx_response_v2, KeyType};
+use sxn_rsv::{create_sgx_response_v2, KeyType};
 
 #[derive(Clone)]
 pub struct NetworkType {

@@ -114,9 +114,9 @@ async fn handle_fetch_header<W: Waker>(
     let resps = futures::future::join_all(resps).await;
 
     let result = serde_json::to_string(&resps).unwrap();
-    dsn_rsv::create_sgx_response_v2(
+    sxn_rsv::create_sgx_response_v2(
         result,
-        dsn_rsv::KeyType::SGX,
+        sxn_rsv::KeyType::SGX,
     )
 }
 

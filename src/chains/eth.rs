@@ -52,7 +52,7 @@ pub async fn start_helios(eth_config: EthConfig) -> Result<EthereumClient<Config
     let network = Network::from_str(&network).unwrap();
 
     let checkpoint = if sgx_enable {
-        let eth_checkpoint = dsn_rsv::fetch_eth_checkpoint(subclient_url)
+        let eth_checkpoint = sxn_rsv::fetch_eth_checkpoint(subclient_url)
             .await
             .unwrap();
         B256::from_slice(&eth_checkpoint)

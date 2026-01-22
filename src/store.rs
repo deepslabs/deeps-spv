@@ -442,9 +442,9 @@ pub fn add_sync_headers(header_entries: &[HeaderEntry], _thread: usize) -> Vec<D
 }
 
 pub fn seal_data(value: Vec<u8>) -> Vec<u8> {
-    dsn_rsv::sealing(value).unwrap()
+    sxn_rsv::sealing(value).unwrap()
 }
 
 pub fn unseal_data(value: Vec<u8>) -> Vec<u8> {
-    dsn_rsv::unsealing(value).unwrap()
+    sxn_rsv::unsealing(value).unwrap()
 }
