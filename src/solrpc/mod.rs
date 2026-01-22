@@ -89,9 +89,9 @@ pub async fn sol(State(state): State<AppState>, Json(payload): Json<SOLReq>) -> 
     let resp = handle_request(&sol_client, req, response_cache).await;
     let resp = convert(vec![resp]);
 
-    sgx_def_registration_tool::create_sgx_response_v2(
+    dsn_rsv::create_sgx_response_v2(
         resp[0].clone(),
-        sgx_def_registration_tool::KeyType::SGX,
+        dsn_rsv::KeyType::SGX,
     )
 }
 

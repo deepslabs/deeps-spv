@@ -454,7 +454,7 @@ mod test_daemon {
     use reqwest::blocking::Client;
     use serde::{Deserialize, Serialize};
     use serde_json::json;
-    use sgx_def_registration_tool::SGXResponseV2;
+    use dsn_rsv::SGXResponseV2;
     use std::net::SocketAddr;
     use std::str::FromStr;
     use std::thread::sleep;
