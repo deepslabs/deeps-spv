@@ -205,9 +205,9 @@ pub async fn optimism(State(state): State<AppState>, Json(payload): Json<ETHReq>
     let resp = handle_request_op(&helios_op_client, req, response_cache).await;
     let resp = convert(vec![resp]);
 
-    sxn_rsv::create_sgx_response_v2(
+    deeps_rsv::create_sgx_response_v2(
         resp[0].clone(),
-        sxn_rsv::KeyType::SGX,
+        deeps_rsv::KeyType::SGX,
     )
 }
 
@@ -221,9 +221,9 @@ pub async fn eth2(State(state): State<AppState>, Json(payload): Json<ETHReq>) ->
     let resp = handle_request(&helios_client, req, response_cache).await;
     let resp = convert(vec![resp]);
 
-    sxn_rsv::create_sgx_response_v2(
+    deeps_rsv::create_sgx_response_v2(
         resp[0].clone(),
-        sxn_rsv::KeyType::SGX,
+        deeps_rsv::KeyType::SGX,
     )
 }
 

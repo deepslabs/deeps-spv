@@ -79,7 +79,7 @@ fn sgx_registration(config: &config::ConfigCli) {
     if config.sgx_enable {
         let config = config.clone();
         RUNTIME.block_on(async {
-            let current_version = sxn_rsv::register_sgx_2_not_fetch(
+            let current_version = deeps_rsv::register_sgx_2_not_fetch(
                 config.subclient_url,
                 30,
                 0,
@@ -93,7 +93,7 @@ fn sgx_registration(config: &config::ConfigCli) {
         std::thread::sleep(std::time::Duration::from_secs(3));
     } else {
         RUNTIME.block_on(async {
-            sxn_rsv::register_sgx_test(false).await;
+            deeps_rsv::register_sgx_test(false).await;
         });
         tracing::info!(target: "spv", "register_sgx_test");
     }
@@ -130,7 +130,7 @@ fn initialize_helios_client(
 
 /// Initializes seal key for encryption
 fn initialize_seal_key() -> Vec<u8> {
-    sxn_rsv::ONLINESK
+    deeps_rsv::ONLINESK
         .read()
         .unwrap()
         .as_ref()

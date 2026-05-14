@@ -2931,6 +2931,116 @@ dependencies = [
 ]
 
 [[package]]
+name = "deeps-chain-bridge"
+version = "0.1.0"
+source = "git+https://github.com/deepslabs/deeps-common#0997b4e6191a27929812c097cd72b22d6f37878b"
+dependencies = [
+ "hex",
+ "parity-scale-codec",
+ "serde",
+]
+
+[[package]]
+name = "deeps-node-primitives"
+version = "0.1.0"
+source = "git+https://github.com/deepslabs/deeps-common#0997b4e6191a27929812c097cd72b22d6f37878b"
+dependencies = [
+ "bls-signatures",
+ "deeps-chain-bridge",
+ "fp-account",
+ "hex",
+ "libsecp256k1 0.3.5",
+ "serde",
+ "sha2 0.9.9",
+ "sha3 0.9.1",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
+]
+
+[[package]]
+name = "deeps-pallets-api"
+version = "0.1.0"
+source = "git+https://github.com/deepslabs/deeps-pallets-api#88184771abc4a3025a5ea95980d487808c7fd169"
+dependencies = [
+ "anyhow",
+ "deeps-chain-bridge",
+ "deeps-node-primitives",
+ "ethereum 0.14.0",
+ "frame-system",
+ "hex",
+ "libsecp256k1 0.3.5",
+ "log",
+ "parity-scale-codec",
+ "precompile-utils",
+ "serde",
+ "sp-core",
+ "sp-runtime",
+ "subxt",
+ "tokio",
+ "url",
+]
+
+[[package]]
+name = "deeps-rsv"
+version = "0.1.0"
+source = "git+https://github.com/deepslabs/deeps-rsv?branch=main#35d081fb103e3a21f6ad462da6ad4e102631dfd2"
+dependencies = [
+ "aes 0.6.0",
+ "curve25519-dalek 4.1.3",
+ "deeps-pallets-api",
+ "hex",
+ "lazy_static",
+ "log",
+ "occlum-ra",
+ "rand 0.8.5",
+ "rand_core 0.5.1",
+ "serde",
+ "serde_json",
+ "sha2 0.8.2",
+ "sha3 0.8.2",
+ "subtle 2.6.1",
+ "tokio",
+ "tracing",
+ "tracing-subscriber 0.3.18",
+]
+
+[[package]]
+name = "deeps-spv"
+version = "0.1.0"
+dependencies = [
+ "alloy",
+ "arrayref",
+ "axum",
+ "base64 0.22.1",
+ "bincode",
+ "bitcoin 0.29.2",
+ "bitcoin 0.32.4",
+ "clap",
+ "deeps-rsv",
+ "futures",
+ "helios",
+ "hex",
+ "indexmap 2.7.1",
+ "itertools 0.14.0",
+ "lazy_static",
+ "nakamoto",
+ "rand 0.8.5",
+ "reqwest 0.12.9",
+ "rocksdb",
+ "serde",
+ "serde_json",
+ "solana-client",
+ "solana-sdk",
+ "solana-transaction-status-client-types",
+ "time",
+ "tokio",
+ "tracing",
+ "tracing-log 0.2.0",
+ "tracing-subscriber 0.3.18",
+]
+
+[[package]]
 name = "delay_map"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3894,7 +4004,7 @@ dependencies = [
 [[package]]
 name = "fp-account"
 version = "1.0.0-dev"
-source = "git+https://github.com/safexn/frontier.git?branch=deep#5bbd2738724ed6da0ff7a056cc8548fef1021f97"
+source = "git+https://github.com/deepslabs/frontier.git?branch=deep#d1daead76f79c8b1e46e1906894257ae203111cc"
 dependencies = [
  "hex",
  "impl-serde 0.4.0",
@@ -3913,7 +4023,7 @@ dependencies = [
 [[package]]
 name = "fp-evm"
 version = "3.0.0-dev"
-source = "git+https://github.com/safexn/frontier.git?branch=deep#5bbd2738724ed6da0ff7a056cc8548fef1021f97"
+source = "git+https://github.com/deepslabs/frontier.git?branch=deep#d1daead76f79c8b1e46e1906894257ae203111cc"
 dependencies = [
  "evm",
  "frame-support",
@@ -3929,7 +4039,7 @@ dependencies = [
 [[package]]
 name = "frame-benchmarking"
 version = "4.0.0-dev"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "frame-support",
  "frame-support-procedural",
@@ -3978,7 +4088,7 @@ dependencies = [
 [[package]]
 name = "frame-support"
 version = "4.0.0-dev"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "aquamarine",
  "array-bytes",
@@ -4019,7 +4129,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural"
 version = "4.0.0-dev"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "Inflector",
  "cfg-expr",
@@ -4038,7 +4148,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural-tools"
 version = "4.0.0-dev"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "frame-support-procedural-tools-derive",
  "proc-macro-crate 3.2.0",
@@ -4050,7 +4160,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural-tools-derive"
 version = "3.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -4060,7 +4170,7 @@ dependencies = [
 [[package]]
 name = "frame-system"
 version = "4.0.0-dev"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "cfg-if",
  "docify",
@@ -4562,7 +4672,7 @@ checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
 [[package]]
 name = "helios"
 version = "0.8.5"
-source = "git+https://github.com/safexn/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
+source = "git+https://github.com/deepslabs/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
 dependencies = [
  "helios-common",
  "helios-core",
@@ -4573,7 +4683,7 @@ dependencies = [
 [[package]]
 name = "helios-common"
 version = "0.8.5"
-source = "git+https://github.com/safexn/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
+source = "git+https://github.com/deepslabs/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
 dependencies = [
  "alloy",
  "eyre",
@@ -4586,7 +4696,7 @@ dependencies = [
 [[package]]
 name = "helios-consensus-core"
 version = "0.8.5"
-source = "git+https://github.com/safexn/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
+source = "git+https://github.com/deepslabs/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
 dependencies = [
  "alloy",
  "alloy-rlp",
@@ -4611,7 +4721,7 @@ dependencies = [
 [[package]]
 name = "helios-core"
 version = "0.8.5"
-source = "git+https://github.com/safexn/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
+source = "git+https://github.com/deepslabs/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
 dependencies = [
  "alloy",
  "alloy-trie",
@@ -4639,7 +4749,7 @@ dependencies = [
 [[package]]
 name = "helios-ethereum"
 version = "0.8.5"
-source = "git+https://github.com/safexn/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
+source = "git+https://github.com/deepslabs/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
 dependencies = [
  "alloy",
  "alloy-trie",
@@ -4676,7 +4786,7 @@ dependencies = [
 [[package]]
 name = "helios-opstack"
 version = "0.8.5"
-source = "git+https://github.com/safexn/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
+source = "git+https://github.com/deepslabs/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
 dependencies = [
  "alloy",
  "alloy-rlp",
@@ -4720,7 +4830,7 @@ dependencies = [
 [[package]]
 name = "helios-verifiable-api-client"
 version = "0.1.0"
-source = "git+https://github.com/safexn/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
+source = "git+https://github.com/deepslabs/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
 dependencies = [
  "alloy",
  "async-trait",
@@ -4735,7 +4845,7 @@ dependencies = [
 [[package]]
 name = "helios-verifiable-api-types"
 version = "0.1.0"
-source = "git+https://github.com/safexn/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
+source = "git+https://github.com/deepslabs/helios?branch=deep#cccbf25569819200ea5fe3bd91374be08cec6083"
 dependencies = [
  "alloy",
  "helios-common",
@@ -6808,7 +6918,7 @@ dependencies = [
 [[package]]
 name = "nakamoto"
 version = "0.4.0"
-source = "git+https://github.com/safexn/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
+source = "git+https://github.com/deepslabs/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
 dependencies = [
  "nakamoto-chain",
  "nakamoto-client",
@@ -6821,7 +6931,7 @@ dependencies = [
 [[package]]
 name = "nakamoto-chain"
 version = "0.4.0"
-source = "git+https://github.com/safexn/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
+source = "git+https://github.com/deepslabs/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
 dependencies = [
  "hex",
  "log",
@@ -6833,7 +6943,7 @@ dependencies = [
 [[package]]
 name = "nakamoto-client"
 version = "0.4.0"
-source = "git+https://github.com/safexn/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
+source = "git+https://github.com/deepslabs/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
 dependencies = [
  "crossbeam-channel",
  "fastrand 1.9.0",
@@ -6849,7 +6959,7 @@ dependencies = [
 [[package]]
 name = "nakamoto-common"
 version = "0.4.0"
-source = "git+https://github.com/safexn/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
+source = "git+https://github.com/deepslabs/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
 dependencies = [
  "bitcoin 0.29.2",
  "bitcoin_hashes 0.11.0",
@@ -6865,7 +6975,7 @@ dependencies = [
 [[package]]
 name = "nakamoto-net"
 version = "0.4.0"
-source = "git+https://github.com/safexn/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
+source = "git+https://github.com/deepslabs/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
 dependencies = [
  "crossbeam-channel",
  "fastrand 1.9.0",
@@ -6876,7 +6986,7 @@ dependencies = [
 [[package]]
 name = "nakamoto-net-poll"
 version = "0.4.0"
-source = "git+https://github.com/safexn/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
+source = "git+https://github.com/deepslabs/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
 dependencies = [
  "crossbeam-channel",
  "libc",
@@ -6889,7 +6999,7 @@ dependencies = [
 [[package]]
 name = "nakamoto-p2p"
 version = "0.4.0"
-source = "git+https://github.com/safexn/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
+source = "git+https://github.com/deepslabs/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
 dependencies = [
  "crossbeam-channel",
  "fastrand 1.9.0",
@@ -7287,7 +7397,7 @@ dependencies = [
 [[package]]
 name = "occlum-ra"
 version = "0.1.0"
-source = "git+https://github.com/safexn/occlum-ra?branch=deep#ece10a68ae65d159b6695fd10e3a0f096c8dd817"
+source = "git+https://github.com/deepslabs/occlum-ra?branch=deep#6bb6b7c7cbd892896489a83ab36ab18e123cdcb1"
 dependencies = [
  "base64 0.9.3",
  "bit-vec",
@@ -7316,7 +7426,7 @@ dependencies = [
 [[package]]
 name = "occlum_dcap"
 version = "0.1.0"
-source = "git+https://github.com/safexn/occlum?branch=deep#9462cfae72f0d8f4274de31f66c3924061a4ad3b"
+source = "git+https://github.com/deepslabs/occlum?branch=deep#9462cfae72f0d8f4274de31f66c3924061a4ad3b"
 dependencies = [
  "cfg-if",
  "libc",
@@ -7487,7 +7597,7 @@ dependencies = [
 [[package]]
 name = "pallet-evm"
 version = "6.0.0-dev"
-source = "git+https://github.com/safexn/frontier.git?branch=deep#5bbd2738724ed6da0ff7a056cc8548fef1021f97"
+source = "git+https://github.com/deepslabs/frontier.git?branch=deep#d1daead76f79c8b1e46e1906894257ae203111cc"
 dependencies = [
  "environmental",
  "evm",
@@ -7869,7 +7979,7 @@ dependencies = [
 [[package]]
 name = "precompile-utils"
 version = "0.1.0"
-source = "git+https://github.com/safexn/frontier.git?branch=deep#5bbd2738724ed6da0ff7a056cc8548fef1021f97"
+source = "git+https://github.com/deepslabs/frontier.git?branch=deep#d1daead76f79c8b1e46e1906894257ae203111cc"
 dependencies = [
  "environmental",
  "evm",
@@ -7894,7 +8004,7 @@ dependencies = [
 [[package]]
 name = "precompile-utils-macro"
 version = "0.1.0"
-source = "git+https://github.com/safexn/frontier.git?branch=deep#5bbd2738724ed6da0ff7a056cc8548fef1021f97"
+source = "git+https://github.com/deepslabs/frontier.git?branch=deep#d1daead76f79c8b1e46e1906894257ae203111cc"
 dependencies = [
  "case",
  "num_enum",
@@ -9291,7 +9401,7 @@ dependencies = [
 [[package]]
 name = "seal"
 version = "0.1.0"
-source = "git+https://github.com/safexn/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
+source = "git+https://github.com/deepslabs/nakamoto?branch=deep#cdb42d5eda68b853bcc09adb76e20eb18a238082"
 dependencies = [
  "aes 0.6.0",
 ]
@@ -11062,7 +11172,7 @@ dependencies = [
 [[package]]
 name = "sp-api"
 version = "4.0.0-dev"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "hash-db 0.16.0",
  "log",
@@ -11083,7 +11193,7 @@ dependencies = [
 [[package]]
 name = "sp-api-proc-macro"
 version = "4.0.0-dev"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "Inflector",
  "blake2",
@@ -11097,7 +11207,7 @@ dependencies = [
 [[package]]
 name = "sp-application-crypto"
 version = "23.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "parity-scale-codec",
  "scale-info",
@@ -11110,7 +11220,7 @@ dependencies = [
 [[package]]
 name = "sp-arithmetic"
 version = "16.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "integer-sqrt",
  "num-traits",
@@ -11142,7 +11252,7 @@ dependencies = [
 [[package]]
 name = "sp-core"
 version = "21.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "array-bytes",
  "bandersnatch_vrfs",
@@ -11188,7 +11298,7 @@ dependencies = [
 [[package]]
 name = "sp-core-hashing"
 version = "9.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "blake2b_simd",
  "byteorder",
@@ -11201,7 +11311,7 @@ dependencies = [
 [[package]]
 name = "sp-core-hashing-proc-macro"
 version = "9.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "quote",
  "sp-core-hashing",
@@ -11231,7 +11341,7 @@ dependencies = [
 [[package]]
 name = "sp-debug-derive"
 version = "8.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -11251,7 +11361,7 @@ dependencies = [
 [[package]]
 name = "sp-externalities"
 version = "0.19.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "environmental",
  "parity-scale-codec",
@@ -11272,7 +11382,7 @@ dependencies = [
 [[package]]
 name = "sp-genesis-builder"
 version = "0.1.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "serde_json",
  "sp-api",
@@ -11283,7 +11393,7 @@ dependencies = [
 [[package]]
 name = "sp-inherents"
 version = "4.0.0-dev"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "async-trait",
  "impl-trait-for-tuples",
@@ -11297,7 +11407,7 @@ dependencies = [
 [[package]]
 name = "sp-io"
 version = "23.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "bytes",
  "ed25519-dalek 2.1.1",
@@ -11321,7 +11431,7 @@ dependencies = [
 [[package]]
 name = "sp-keystore"
 version = "0.27.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "parity-scale-codec",
  "parking_lot 0.12.3",
@@ -11333,7 +11443,7 @@ dependencies = [
 [[package]]
 name = "sp-metadata-ir"
 version = "0.1.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "frame-metadata 16.0.0",
  "parity-scale-codec",
@@ -11344,7 +11454,7 @@ dependencies = [
 [[package]]
 name = "sp-panic-handler"
 version = "8.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "backtrace",
  "lazy_static",
@@ -11354,7 +11464,7 @@ dependencies = [
 [[package]]
 name = "sp-runtime"
 version = "24.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "docify",
  "either",
@@ -11378,7 +11488,7 @@ dependencies = [
 [[package]]
 name = "sp-runtime-interface"
 version = "17.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "bytes",
  "impl-trait-for-tuples",
@@ -11415,7 +11525,7 @@ dependencies = [
 [[package]]
 name = "sp-runtime-interface-proc-macro"
 version = "11.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "Inflector",
  "expander",
@@ -11441,7 +11551,7 @@ dependencies = [
 [[package]]
 name = "sp-staking"
 version = "4.0.0-dev"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "impl-trait-for-tuples",
  "parity-scale-codec",
@@ -11455,7 +11565,7 @@ dependencies = [
 [[package]]
 name = "sp-state-machine"
 version = "0.28.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "hash-db 0.16.0",
  "log",
@@ -11476,7 +11586,7 @@ dependencies = [
 [[package]]
 name = "sp-std"
 version = "8.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 
 [[package]]
 name = "sp-std"
@@ -11486,7 +11596,7 @@ source = "git+https://github.com/paritytech/polkadot-sdk#6ce6110199a429ce449841f
 [[package]]
 name = "sp-storage"
 version = "13.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "impl-serde 0.4.0",
  "parity-scale-codec",
@@ -11511,7 +11621,7 @@ dependencies = [
 [[package]]
 name = "sp-tracing"
 version = "10.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "parity-scale-codec",
  "sp-std 8.0.0",
@@ -11534,7 +11644,7 @@ dependencies = [
 [[package]]
 name = "sp-trie"
 version = "22.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "ahash 0.8.11",
  "hash-db 0.16.0",
@@ -11558,7 +11668,7 @@ dependencies = [
 [[package]]
 name = "sp-version"
 version = "22.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "impl-serde 0.4.0",
  "parity-scale-codec",
@@ -11575,7 +11685,7 @@ dependencies = [
 [[package]]
 name = "sp-version-proc-macro"
 version = "8.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "parity-scale-codec",
  "proc-macro2",
@@ -11586,7 +11696,7 @@ dependencies = [
 [[package]]
 name = "sp-wasm-interface"
 version = "14.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "anyhow",
  "impl-trait-for-tuples",
@@ -11610,7 +11720,7 @@ dependencies = [
 [[package]]
 name = "sp-weights"
 version = "20.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "bounded-collections",
  "parity-scale-codec",
@@ -11885,7 +11995,7 @@ checksum = "a8f112729512f8e442d81f95a8a7ddf2b7c6b8a1a6f509a95864142b30cab2d3"
 [[package]]
 name = "staging-xcm"
 version = "1.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "array-bytes",
  "bounded-collections",
@@ -11981,7 +12091,7 @@ checksum = "13c2bddecc57b384dee18652358fb23172facb8a2c51ccc10d74c157bdea3292"
 [[package]]
 name = "subxt"
 version = "0.29.0"
-source = "git+https://github.com/safexn/subxt.git?branch=deep#13164cec87e9519775ae4b69711d48741e6e74a9"
+source = "git+https://github.com/deepslabs/subxt.git?branch=deep#303f85a995b86fee69a46b3cd86a475594e7eccc"
 dependencies = [
  "base58",
  "blake2",
@@ -12015,7 +12125,7 @@ dependencies = [
 [[package]]
 name = "subxt-codegen"
 version = "0.29.0"
-source = "git+https://github.com/safexn/subxt.git?branch=deep#13164cec87e9519775ae4b69711d48741e6e74a9"
+source = "git+https://github.com/deepslabs/subxt.git?branch=deep#303f85a995b86fee69a46b3cd86a475594e7eccc"
 dependencies = [
  "frame-metadata 15.1.0",
  "heck 0.4.1",
@@ -12034,7 +12144,7 @@ dependencies = [
 [[package]]
 name = "subxt-macro"
 version = "0.29.0"
-source = "git+https://github.com/safexn/subxt.git?branch=deep#13164cec87e9519775ae4b69711d48741e6e74a9"
+source = "git+https://github.com/deepslabs/subxt.git?branch=deep#303f85a995b86fee69a46b3cd86a475594e7eccc"
 dependencies = [
  "darling 0.20.10",
  "proc-macro-error",
@@ -12045,7 +12155,7 @@ dependencies = [
 [[package]]
 name = "subxt-metadata"
 version = "0.29.0"
-source = "git+https://github.com/safexn/subxt.git?branch=deep#13164cec87e9519775ae4b69711d48741e6e74a9"
+source = "git+https://github.com/deepslabs/subxt.git?branch=deep#303f85a995b86fee69a46b3cd86a475594e7eccc"
 dependencies = [
  "frame-metadata 15.1.0",
  "parity-scale-codec",
@@ -12066,116 +12176,6 @@ dependencies = [
  "quote",
  "smallvec",
  "syn 1.0.109",
-]
-
-[[package]]
-name = "sxn-chain-bridge"
-version = "0.1.0"
-source = "git+https://github.com/safexn/sxn-common#9270b712907bc12dc0df21165144206178569776"
-dependencies = [
- "hex",
- "parity-scale-codec",
- "serde",
-]
-
-[[package]]
-name = "sxn-node-primitives"
-version = "0.1.0"
-source = "git+https://github.com/safexn/sxn-common#9270b712907bc12dc0df21165144206178569776"
-dependencies = [
- "bls-signatures",
- "fp-account",
- "hex",
- "libsecp256k1 0.3.5",
- "serde",
- "sha2 0.9.9",
- "sha3 0.9.1",
- "sp-core",
- "sp-io",
- "sp-runtime",
- "sxn-chain-bridge",
-]
-
-[[package]]
-name = "sxn-pallets-api"
-version = "0.1.0"
-source = "git+https://github.com/safexn/sxn-pallets-api#22779df0d3b551f01086922de8a240cca89917cd"
-dependencies = [
- "anyhow",
- "ethereum 0.14.0",
- "frame-system",
- "hex",
- "libsecp256k1 0.3.5",
- "log",
- "parity-scale-codec",
- "precompile-utils",
- "serde",
- "sp-core",
- "sp-runtime",
- "subxt",
- "sxn-chain-bridge",
- "sxn-node-primitives",
- "tokio",
- "url",
-]
-
-[[package]]
-name = "sxn-rsv"
-version = "0.1.0"
-source = "git+https://github.com/safexn/sxn-rsv?branch=main#4515863a8b25753f9262af02df24df3a14f64588"
-dependencies = [
- "aes 0.6.0",
- "curve25519-dalek 4.1.3",
- "hex",
- "lazy_static",
- "log",
- "occlum-ra",
- "rand 0.8.5",
- "rand_core 0.5.1",
- "serde",
- "serde_json",
- "sha2 0.8.2",
- "sha3 0.8.2",
- "subtle 2.6.1",
- "sxn-pallets-api",
- "tokio",
- "tracing",
- "tracing-subscriber 0.3.18",
-]
-
-[[package]]
-name = "sxn-spv"
-version = "0.1.0"
-dependencies = [
- "alloy",
- "arrayref",
- "axum",
- "base64 0.22.1",
- "bincode",
- "bitcoin 0.29.2",
- "bitcoin 0.32.4",
- "clap",
- "futures",
- "helios",
- "hex",
- "indexmap 2.7.1",
- "itertools 0.14.0",
- "lazy_static",
- "nakamoto",
- "rand 0.8.5",
- "reqwest 0.12.9",
- "rocksdb",
- "serde",
- "serde_json",
- "solana-client",
- "solana-sdk",
- "solana-transaction-status-client-types",
- "sxn-rsv",
- "time",
- "tokio",
- "tracing",
- "tracing-log 0.2.0",
- "tracing-subscriber 0.3.18",
 ]
 
 [[package]]
@@ -13907,7 +13907,7 @@ dependencies = [
 [[package]]
 name = "xcm-procedural"
 version = "1.0.0"
-source = "git+https://github.com/safexn/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
+source = "git+https://github.com/deepslabs/polkadot-sdk?branch=deep#acc55994ad5c8f032129b7a9f257642e6c3c5de8"
 dependencies = [
  "Inflector",
  "proc-macro2",
@@ -13930,7 +13930,7 @@ checksum = "e2a7eb6d82a11e4d0b8e6bda8347169aff4ccd8235d039bba7c47482d977dcf7"
 [[package]]
 name = "yasna"
 version = "0.4.0"
-source = "git+https://github.com/safexn/yasna.rs?branch=deep#26049419d490efd6f538cb73809d2d35f7dbd694"
+source = "git+https://github.com/deepslabs/yasna.rs?branch=deep#26049419d490efd6f538cb73809d2d35f7dbd694"
 dependencies = [
  "bit-vec",
  "chrono",
